@@ -14,16 +14,16 @@ S setupAns1() {
 	// Make the contents of ans1 correspond to picture 1 in the writeup
 	struct S ans1;
 	ans1.x = 42;
-	struct S circle;
-	struct S triangle;
-	circle.x = 33;
-	circle.right = &triangle;
-	circle.left = &triangle;
-	triangle.x = 55;
-	triangle.left = &circle;
-	triangle.right = NULL;
-	ans1.left = &circle;
-	ans1.right = &triangle;
+	struct S* circle = malloc(sizeof(S));
+	struct S* triangle = malloc(sizeof(S));
+	ans1.left = circle;
+	ans1.right = triangle;
+	circle->x = 33;
+	circle->left = triangle;
+	circle->right = triangle;
+	triangle->x = 55;
+	triangle->left = circle;
+	triangle->right = NULL;
   	return ans1;
 }
 
@@ -33,21 +33,22 @@ struct S* ans2;
 S* setupAns2() {
 	// Make the contents of ans2 correspond to picture 2 in the writeup
 	S* ans2;
-	S triangle;
-	S circle[3];
-	triangle.x = 66;
-	triangle.right = NULL;
-	triangle.left = &circle;
-	circle[0].x = 33;
-	circle[0].left = NULL;
-	circle[0].right = &triangle;
-	circle[1].x = 44;
-	circle[1].left = NULL;
-	circle[1].right = &triangle;
-	circle[2].x = 55;
-	circle[2].left = &circle;
+	S* circle = malloc(sizeof(S) * 3);
+	S* triangle = malloc(sizeof(S));
+	ans2 = triangle;
+	triangle->x = 66;
+	triangle->left = circle;
+	triangle->right = NULL;
+	int x = 33;
+	int i;
+	for (i = 0; i < 3; i++){
+		circle[i].x = x;
+		circle[i].left = NULL;
+		circle[i].right = triangle;
+		x += 11;
+	}
+	circle[2].left = circle;
 	circle[2].right = NULL;
-	ans2 = &triangle;
 	return ans2;
 }
 
