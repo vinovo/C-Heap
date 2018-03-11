@@ -13,7 +13,14 @@ void swap(Heap* h, int index1, int index2) {
 }
 
 void expandCapacity(Heap* h) {
-	Heap* newHeap = malloc(sizeof(Heap));
+	h->capacity *= 2;
+	Pair* elements = malloc(sizeof(Pair) * h->capacity);
+	int i;
+	for (i = 0; i < h->size; i++){
+		elements[i] = h->elements[i];
+	}
+	h->elements = elements;
+/*	Heap* newHeap = malloc(sizeof(Heap));
 	newHeap->capacity = h->capacity * 2;
 	newHeap->size = h->size;
 	newHeap->elements = malloc(sizeof(Pair) * newHeap->capacity);
@@ -21,7 +28,7 @@ void expandCapacity(Heap* h) {
 	for (i = 0; i < h->size; i += 1){
 		newHeap->elements[i] = h->elements[i];
 	}
-	h = newHeap;
+	h = newHeap;*/
 }
 
 void bubbleUp(Heap* h, int index) {

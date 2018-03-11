@@ -48,6 +48,7 @@ void TestAdd(CuTest *tc) {
 	CuAssertIntEquals(tc, 2, h->elements[3].key);
 	CuAssertStrEquals(tc, "2", h->elements[3].value);
 	cleanupHeap(h);
+
 }
 
 CuSuite* StrUtilGetSuite() {
