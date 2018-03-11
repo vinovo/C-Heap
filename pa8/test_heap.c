@@ -27,6 +27,29 @@ void TestTwo(CuTest *tc) {
   CuAssertStrEquals(tc, lol, alsoLol);
 }
 
+void TestMakeHeap(CuTest *tc) {
+	Heap* h = makeHeap(10);
+	CuAssertIntEquals(tc, 10, h->capacity);
+	cleanupHeap(h);
+}
+
+void TestAdd(CuTest *tc) {
+	Heap* h = makeHeap(3);
+	add(h, 2, "3");
+	add(h, 1, "1");
+	add(h, 0, "0");
+	add(h, 2, "2");
+	CuAssertIntEquals(tc, 0, h->elements[0].key);
+	CuAssertStrEquals(tc, "0", h->elements[0].value);
+	CuAssertIntEquals(tc, 1, h->elements[1].key);
+	CuAssertStrEquals(tc, "1", h->elements[1].value);
+	CuAssertIntEquals(tc, 2, h->elements[2].key);
+	CuAssertStrEquals(tc, "3", h->elements[2].value);
+	CuAssertIntEquals(tc, 2, h->elements[3].key);
+	CuAssertStrEquals(tc, "2", h->elements[3].value);
+	cleanupHeap(h);
+}
+
 CuSuite* StrUtilGetSuite() {
   CuSuite* suite = CuSuiteNew();
 
