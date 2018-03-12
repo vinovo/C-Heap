@@ -59,16 +59,19 @@ void TestAdd(CuTest *tc) {
 
 void TestRemoveMin(CuTest *tc) {
 	Heap* h = makeHeap(3);
+	CuAssertStrEquals(tc, NULL, removeMin(h));
+	add(h, 2, "3");
+	CuAssertStrEquals(tc, "3", removeMin(h));
 	add(h, 2, "3");
 	add(h, 2, "1");
 	add(h, 0, "0");
 	add(h, 2, "2");
 	add(h, 5, "5");
-	removeMin(h);
-	int i;
+	CuAssertStrEquals(tc, "0", removeMin(h));
+/*	int i;
 	for (i = 0; i < h->size; i += 1){
 		printf("%s\n", h->elements[i].value);
-	}
+	}*/
 	CuAssertIntEquals(tc, 2, h->elements[0].key);
 	CuAssertStrEquals(tc, "2", h->elements[0].value);
 	CuAssertIntEquals(tc, 2, h->elements[1].key);

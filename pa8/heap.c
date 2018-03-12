@@ -20,15 +20,6 @@ void expandCapacity(Heap* h) {
 		elements[i] = h->elements[i];
 	}
 	h->elements = elements;
-/*	Heap* newHeap = malloc(sizeof(Heap));
-	newHeap->capacity = h->capacity * 2;
-	newHeap->size = h->size;
-	newHeap->elements = malloc(sizeof(Pair) * newHeap->capacity);
-	int i;
-	for (i = 0; i < h->size; i += 1){
-		newHeap->elements[i] = h->elements[i];
-	}
-	h = newHeap;*/
 }
 
 void bubbleUp(Heap* h, int index) {
