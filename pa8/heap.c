@@ -89,12 +89,6 @@ char* removeMin(Heap* h) {
 }
 
 bool isHeapAt(Heap* h, int index) {
-	if (index >= h->size) {
-		return false;
-	}
-	else {
-		return true;
-	}
 }
 
 void cleanupHeap(Heap* h) {

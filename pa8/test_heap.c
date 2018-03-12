@@ -41,10 +41,10 @@ void TestAdd(CuTest *tc) {
 	add(h, 2, "2");
 	CuAssertIntEquals(tc, 0, h->elements[0].key);
 	CuAssertStrEquals(tc, "0", h->elements[0].value);
-	CuAssertIntEquals(tc, 1, h->elements[1].key);
-	CuAssertStrEquals(tc, "1", h->elements[1].value);
-	CuAssertIntEquals(tc, 2, h->elements[2].key);
-	CuAssertStrEquals(tc, "3", h->elements[2].value);
+	CuAssertIntEquals(tc, 1, h->elements[2].key);
+	CuAssertStrEquals(tc, "1", h->elements[2].value);
+	CuAssertIntEquals(tc, 2, h->elements[1].key);
+	CuAssertStrEquals(tc, "3", h->elements[1].value);
 	CuAssertIntEquals(tc, 2, h->elements[3].key);
 	CuAssertStrEquals(tc, "2", h->elements[3].value);
 	cleanupHeap(h);
@@ -58,6 +58,7 @@ CuSuite* StrUtilGetSuite() {
   SUITE_ADD_TEST(suite, TestHeap);
   SUITE_ADD_TEST(suite, TestOne);
   SUITE_ADD_TEST(suite, TestTwo);
+	SUITE_ADD_TEST(suite, TestAdd);
   return suite;
 }
 
