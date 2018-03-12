@@ -67,7 +67,8 @@ void TestRemoveMin(CuTest *tc) {
 	removeMin(h);
 	int i;
 	for (i = 0; i < h->size; i += 1){
-		printf("%d\n", h->elements[i].value);
+		printf("%s\n", h->elements[i].value);
+	}
 	CuAssertIntEquals(tc, 2, h->elements[0].key);
 	CuAssertStrEquals(tc, "2", h->elements[0].value);
 	CuAssertIntEquals(tc, 2, h->elements[1].key);
