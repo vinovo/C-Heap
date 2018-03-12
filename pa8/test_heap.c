@@ -93,6 +93,12 @@ void TestRemoveMin(CuTest *tc) {
 	CuAssertIntEquals(tc, 7, size(h2));
 	CuAssertStrEquals(tc, "b", removeMin(h2));
 	CuAssertIntEquals(tc, 6, size(h2));
+	CuAssertIntEquals(tc, 3, h2->elements[0]);
+	CuAssertIntEquals(tc, 4, h2->elements[1]);
+	CuAssertIntEuqals(tc, 6, h2->elements[2]);
+	CuAssertIntEquals(tc, 8, h2->elements[3]);
+	CuAssertIntEquals(tc, 5, h2->elements[4]);
+	CuAssertIntEquals(tc, 7, h2->elements[5]);
 	cleanupHeap(h2);
 }
 
