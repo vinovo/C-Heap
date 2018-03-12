@@ -80,6 +80,20 @@ void TestRemoveMin(CuTest *tc) {
 	CuAssertStrEquals(tc, "1", h->elements[2].value);
 	CuAssertIntEquals(tc, 5, h->elements[3].key);
 	cleanupHeap(h);
+	Heap* h2 = makeHeap(10);
+	add(h2, 1, "a");
+	add(h2, 2, "b");
+	add(h2, 3, "c");
+	add(h2, 4, "d");
+	add(h2, 5, "e");
+	add(h2, 6, "f");
+	add(h2, 7, "g");
+	add(h2, 8, "h");
+	CuAssertStrEquals(tc, "a", removeMin(h2));
+	CuAssertIntEquals(tc, 7, size(h2));
+	CuAssertStrEquals(tc, "b", removeMin(h2));
+	CuAssertIntEquals(tc, 6, size(h2));
+	cleanupHeap(h2);
 }
 
 void TestPeek(CuTest *tc) {
