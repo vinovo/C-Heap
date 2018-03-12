@@ -35,7 +35,7 @@ void bubbleUp(Heap* h, int index) {
 	if (index == 0){
 		return;
 	}
-	bool left = index % 2 == 0;
+	bool left = index % 2 != 0;
 	int parentIndex;
 	if (left){
 		parentIndex = (index - 1) / 2;
@@ -89,11 +89,12 @@ char* removeMin(Heap* h) {
 }
 
 bool isHeapAt(Heap* h, int index) {
+	return false;
 }
 
 void cleanupHeap(Heap* h) {
-	free(h->elements);
 	free(h);
+	free(h->elements);
 }
 
 void printHeap(Heap* h) {
