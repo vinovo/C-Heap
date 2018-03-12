@@ -55,7 +55,62 @@ void TestAdd(CuTest *tc) {
 	CuAssertIntEquals(tc, 2, h->elements[3].key);
 	CuAssertStrEquals(tc, "3", h->elements[3].value);
 	cleanupHeap(h);
+}
 
+void TestRemoveMin(CuTest *tc) {
+	Heap* h = makeHeap(3);
+	add(h, 2, "3");
+	add(h, 2, "1");
+	add(h, 0, "0");
+	add(h, 2, "2");
+	add(h, 5, "5");
+	removeMin(h);
+	CuAssertIntEquals(tc, 2, h->elements[0].key);
+	CuAssertStrEquals(tc, "2", h->elements[0].value);
+	CuAssertIntEquals(tc, 2, h->elements[1].key);
+	CuAssertStrEquals(tc, "3", h->elements[1].value);
+	CuAssertIntEquals(tc, 2, h->elements[2].key);
+	CuAssertStrEquals(tc, "1", h->elements[2].value);
+	CuAssertIntEquals(tc, 5, h->elements[3].key);
+	cleanupHeap(h);
+}
+
+void TestPeek(CuTest *tc) {
+	Heap* h = makeHeap(3);
+	add(h, 2, "3");
+	CuAssertStrEquals(tc, "3", peek(h));
+	add(h, 2, "1");
+	CuAssertStrEquals(tc, "1", peek(h));
+	add(h, 0, "0");
+	CuAssertStrEquals(tc, "0", peek(h));
+	add(h, 2, "2");
+	CuAssertStrEquals(tc, "0", peek(h));
+	cleanupHeap(h);
+}
+
+void TestSizeAndCapacity(CuTest *tc) {	
+	Heap* h = makeHeap(1);
+	CuAssertIntEquals(tc, 1, h->capacity);
+	CuAssertIntEquals(tc, 0, size(h));
+	add(h, 2, "3");
+	CuAssertIntEquals(tc, 1, h->capacity);
+	CuAssertIntEquals(tc, 1, size(h));
+	add(h, 2, "1");
+	CuAssertIntEquals(tc, 2, h->capacity);
+	CuAssertIntEquals(tc, 2, size(h));
+	add(h, 0, "0");
+	CuAssertIntEquals(tc, 4, h->capacity);
+	CuAssertIntEquals(tc, 3, size(h));
+	removeMin(h);
+	CuAssertIntEquals(tc, 4, h->capacity);
+	CuAssertIntEquals(tc, 2, size(h));
+	add(h, 2, "2");
+	add(h, 5, "5");
+	add(h, 5, "5");
+	removeMin(h);
+	CuAssertIntEquals(tc, 8, h->capacity);
+	CuAssertIntEquals(tc, 4, size(h));
+	cleanupHeap(h);
 }
 
 CuSuite* StrUtilGetSuite() {
@@ -67,6 +122,9 @@ CuSuite* StrUtilGetSuite() {
   SUITE_ADD_TEST(suite, TestTwo);
 	SUITE_ADD_TEST(suite, TestMakeHeap);
 	SUITE_ADD_TEST(suite, TestAdd);
+	SUITE_ADD_TEST(suite, TestRemoveMin);
+	SUITE_ADD_TEST(suite, TestPeek);
+	SUITE_ADD_TEST(suite, TestSizeAndCapacity);
   return suite;
 }
 

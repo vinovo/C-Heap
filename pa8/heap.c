@@ -64,16 +64,18 @@ void add(Heap* h, int k, char* val) {
 void bubbleDown(Heap* h, int index) {
 	int left = 2 * index + 1;
 	int right = 2 * index + 2;
-	if (left >= h->size || right >= h->size){
-		return;
-	}
-	if (h->elements[right].key < h->elements[left].key){
-		swap(h, index, right);
-		bubbleDown(h, right);
+	if (right < h->size && h->elements[right].key < h->elements[left].key){
+		if (h->elements[index].key >= h->elements[right].key){
+			swap(h, index, right);
+			bubbleDown(h, right);
+		}
 	}
 	else{
-		swap(h, index, left);
-		bubbleDown(h, left);
+		if (left < h->size && h->elements[index].key 
+					>= h->elements[left].key){
+			swap(h, index, left);
+			bubbleDown(h, left);
+		}
 	}
 }
 
@@ -99,7 +101,7 @@ void cleanupHeap(Heap* h) {
 
 void printHeap(Heap* h) {
 	int i;
-	for (i = 0; i < h->size; i++){
+	for (i = 0; i < h->size; i += 1){
 		printf("%s", h->elements[i].value);
 	}
 }
