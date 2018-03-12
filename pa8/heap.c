@@ -43,7 +43,7 @@ void bubbleUp(Heap* h, int index) {
 	else{
 		parentIndex = (index - 2) / 2;
 	}
-	if (h->elements[index].key < h->elements[parentIndex].key){
+	if (h->elements[index].key <= h->elements[parentIndex].key){
 		swap(h, index, parentIndex);
 		bubbleUp(h, parentIndex);
 	}
