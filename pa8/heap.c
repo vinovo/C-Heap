@@ -50,15 +50,15 @@ void bubbleUp(Heap* h, int index) {
 }
 
 void add(Heap* h, int k, char* val) {
+	if (h->size >= h->capacity){
+		expandCapacity(h);
+	}
 	Pair pair;
 	pair.key = k;
 	pair.value = val;
 	h->elements[h->size] = pair;
 	bubbleUp(h, h->size);
 	h->size += 1;
-	if (h->size >= h->capacity){
-		expandCapacity(h);
-	}
 }
 
 void bubbleDown(Heap* h, int index) {

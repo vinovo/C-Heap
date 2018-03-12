@@ -43,8 +43,9 @@ void TestAdd(CuTest *tc) {
 	CuAssertIntEquals(tc, 3, h->capacity);
 	add(h, 1, "1");
 	add(h, 0, "0");
-	CuAssertIntEquals(tc, 6, h->capacity);
+	CuAssertIntEquals(tc, 3, h->capacity);
 	add(h, 2, "2");
+	CuAssertIntEquals(tc, 6, h->capacity);
 	CuAssertIntEquals(tc, 0, h->elements[0].key);
 	CuAssertStrEquals(tc, "0", h->elements[0].value);
 	CuAssertIntEquals(tc, 1, h->elements[2].key);
