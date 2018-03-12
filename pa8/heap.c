@@ -14,6 +14,7 @@ void swap(Heap* h, int index1, int index2) {
 
 void expandCapacity(Heap* h) {
 	h->capacity *= 2;
+	free(h->elements);
 	Pair* elements = malloc(sizeof(Pair) * h->capacity);
 	int i;
 	for (i = 0; i < h->size; i++){
@@ -112,5 +113,4 @@ Heap* makeHeap(int capacity) {
 	h->elements = malloc(sizeof(Pair) * capacity);
 	return h;
 }
-
 
