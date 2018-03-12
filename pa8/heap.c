@@ -14,12 +14,12 @@ void swap(Heap* h, int index1, int index2) {
 
 void expandCapacity(Heap* h) {
 	h->capacity *= 2;
-	free(h->elements);
 	Pair* elements = malloc(sizeof(Pair) * h->capacity);
 	int i;
 	for (i = 0; i < h->size; i++){
 		elements[i] = h->elements[i];
 	}
+	free(h->elements);
 	h->elements = elements;
 }
 
