@@ -98,6 +98,7 @@ void TestRemoveMin(CuTest *tc) {
 
 void TestPeek(CuTest *tc) {
 	Heap* h = makeHeap(3);
+	CuAssertStrEquals(tc, NULL, peek(h));
 	add(h, 2, "3");
 	CuAssertStrEquals(tc, "3", peek(h));
 	add(h, 2, "1");
